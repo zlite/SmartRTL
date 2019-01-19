@@ -1,18 +1,4 @@
 
-None selected
-
-Skip to content
-Using 3DR Mail with screen readers
-
-Conversations
-Python code
-Inbox
-x
-
-Chris Anderson <chris@3dr.com>
-6:27 PM (40 minutes ago)
-to me
-
 '''
 modification of a drawing app to show SmartRTL
 '''
@@ -30,14 +16,14 @@ import math
 #paths = [[0],[0],[0]] # x,y,distance from start
 paths = []
 distances = []
-bins = []
-binnums = 10
+#bins = []
+#binnums = 10
 current = []
 lines = []
 node = []
 shortest_path = []
-current.append(0)
-current.append(0)
+#current.append(0)
+#current.append(0)
 #for i in range(binnums):  # initialize bins
 #	bins.append(0)
 points = 0
