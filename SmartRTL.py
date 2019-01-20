@@ -1,4 +1,3 @@
-
 '''
 modification of a drawing app to show SmartRTL
 '''
@@ -162,7 +161,7 @@ class PathView (ui.View):
 		# Clear the view (the path has now been rendered
 		# into the SketchView's image view):
 		self.path = None
-		print(paths)
+#		print(paths)
 		self.set_needs_display()
 
 	def draw(self):
@@ -227,7 +226,10 @@ class SketchView (ui.View):
 		# start at end point
 #		current[0] = paths[points-11][0] # hop back ten points and start searching
 #		current[1] = paths[points-11][1]
-
+#		ui.set_color('black')
+#		for i in range(points-1):
+#			self.path.line_to(paths[i+1][0], paths[i+1][1])
+#			self.set_needs_display()
 		# replace points with line segments
 		previous_point = 0,0
 		for i in range(points):
@@ -250,15 +252,15 @@ class SketchView (ui.View):
 					delta_x = lines[i][0]-lines[j][0]
 					delta_y = lines[i][1]-lines[j][1]
 					distance = math.sqrt(delta_x*delta_x + delta_y*delta_y)
-					print ("Distance, i, j:", distance, i, j)
+#					print ("Distance, i, j:", distance, i, j)
 					if distance < 50:
-						print ("Adding edge", i, j)
+#						print ("Adding edge", i, j)
 						g.add_edge(i,j)
-			print("Vertex",i,g.get_vertex(i+1))
+#			print("Vertex",i,g.get_vertex(i+1))
 		for v in g:
 			for dest in v.get_neighbours():
 				w = v.get_weight(dest)
-				print("Neighbors",v.get_key(),dest.get_key(),w)
+#				print("Neighbors",v.get_key(),dest.get_key(),w)
 
 		with ui.ImageContext(1024, 1024) as ctx:
 #			ui.View(background_color = None)
@@ -282,19 +284,19 @@ class SketchView (ui.View):
 			ui.set_color('#4757ff')
 			circle=self.path.oval(lines[line_total-1][2]-5,lines[line_total-1][3]-5,10,10)
 			circle.fill()
-			self.image_view.image = ctx.get_image()
+#			self.image_view.image = ctx.get_image()
 			# now find shortest path back
 			src = g.get_vertex(line_total-1)
 			parent, distance = find_shortest_paths(src)
-			print("shortest path")
+#			print("shortest path")
 			for v in parent:
 				if v.get_key() == 1:
 					while parent[v] is not None:
-						print(v.get_key(), end = ' ')
+#						print(v.get_key(), end = ' ')
 						shortest_path.append(v.get_key())
 						v = parent[v]
 #						print(src.get_key()) # print source vertex
-			print ("Shortest path:", shortest_path)
+#			print ("Shortest path:", shortest_path)
 			for i in shortest_path:
 				circle=self.path.oval(lines[i][2]-5,lines[i][3]-5,10,10)
 				circle.fill()
